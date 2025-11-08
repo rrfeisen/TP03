@@ -3,12 +3,14 @@
 #include <iostream>
 #include <iomanip>
 
+using namespace std;
+
 Aluno::Aluno() : matricula(0), coeficiente(0.0f) {
     memset(nome, 0, sizeof(nome));
     memset(curso, 0, sizeof(curso));
 }
 
-Aluno::Aluno(int mat, const std::string& nom, const std::string& cur, float coef) 
+Aluno::Aluno(int mat, const string& nom, const string& cur, float coef) 
     : matricula(mat), coeficiente(coef) {
     memset(nome, 0, sizeof(nome));
     memset(curso, 0, sizeof(curso));
@@ -17,29 +19,29 @@ Aluno::Aluno(int mat, const std::string& nom, const std::string& cur, float coef
 }
 
 int Aluno::getMatricula() const { return matricula; }
-std::string Aluno::getNome() const { return std::string(nome); }
-std::string Aluno::getCurso() const { return std::string(curso); }
+string Aluno::getNome() const { return string(nome); }
+string Aluno::getCurso() const { return string(curso); }
 float Aluno::getCoeficiente() const { return coeficiente; }
 
 void Aluno::setMatricula(int mat) { matricula = mat; }
-void Aluno::setNome(const std::string& nom) {
+void Aluno::setNome(const string& nom) {
     memset(nome, 0, sizeof(nome));
     strncpy(nome, nom.c_str(), sizeof(nome) - 1);
 }
-void Aluno::setCurso(const std::string& cur) {
+void Aluno::setCurso(const string& cur) {
     memset(curso, 0, sizeof(curso));
     strncpy(curso, cur.c_str(), sizeof(curso) - 1);
 }
 void Aluno::setCoeficiente(float coef) { coeficiente = coef; }
 
-void Aluno::serializar(std::ofstream& out) const {
+void Aluno::serializar(ostream& out) const {
     out.write(reinterpret_cast<const char*>(&matricula), sizeof(matricula));
     out.write(nome, sizeof(nome));
     out.write(curso, sizeof(curso));
     out.write(reinterpret_cast<const char*>(&coeficiente), sizeof(coeficiente));
 }
 
-void Aluno::desserializar(std::ifstream& in) {
+void Aluno::desserializar(istream& in) {
     in.read(reinterpret_cast<char*>(&matricula), sizeof(matricula));
     in.read(nome, sizeof(nome));
     in.read(curso, sizeof(curso));
@@ -51,9 +53,9 @@ size_t Aluno::tamanhoRegistro() {
 }
 
 void Aluno::exibir() const {
-    std::cout << "Matrícula: " << matricula << std::endl;
-    std::cout << "Nome: " << nome << std::endl;
-    std::cout << "Curso: " << curso << std::endl;
-    std::cout << "Coeficiente: " << std::fixed << std::setprecision(2) 
-              << coeficiente << std::endl;
+    cout << "Matrícula: " << matricula << endl;
+    cout << "Nome: " << nome << endl;
+    cout << "Curso: " << curso << endl;
+    cout << "Coeficiente: " << fixed << setprecision(2) 
+         << coeficiente << endl;
 }
