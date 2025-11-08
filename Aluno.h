@@ -4,6 +4,8 @@
 #include <string>
 #include <fstream>
 
+using namespace std;
+
 class Aluno {
 private:
     int matricula;
@@ -13,23 +15,23 @@ private:
 
 public:
     Aluno();
-    Aluno(int mat, const std::string& nom, const std::string& cur, float coef);
+    Aluno(int mat, const string& nom, const string& cur, float coef);
     
     // Getters
     int getMatricula() const;
-    std::string getNome() const;
-    std::string getCurso() const;
+    string getNome() const;
+    string getCurso() const;
     float getCoeficiente() const;
     
     // Setters
     void setMatricula(int mat);
-    void setNome(const std::string& nom);
-    void setCurso(const std::string& cur);
+    void setNome(const string& nom);
+    void setCurso(const string& cur);
     void setCoeficiente(float coef);
     
     // Serialização
-    void serializar(std::ofstream& out) const;
-    void desserializar(std::ifstream& in);
+    void serializar(ostream& out) const;
+    void desserializar(istream& in);
     
     // Tamanho fixo do registro
     static size_t tamanhoRegistro();
